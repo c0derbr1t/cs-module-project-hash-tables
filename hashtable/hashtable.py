@@ -161,6 +161,10 @@ class HashTable:
 
         self.count -= 1
 
+        if self.get_load_factor() < 0.2:
+            if self.capacity / 2 >= 8:
+                self.resize(self.capacity/2)
+
             
     def get(self, key):
         """
