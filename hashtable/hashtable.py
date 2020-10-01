@@ -7,6 +7,9 @@ class HashTableEntry:
         self.value = value
         self.next = None
 
+    def __repr__(self):
+        return f"HashTableEntry({repr(self.key)},{repr(self.value)})"
+
 # Hash table can't have fewer than this many slots
 MIN_CAPACITY = 8
 
@@ -96,6 +99,12 @@ class HashTable:
 
         Implement this.
         """
+        # LL IMPLEMENTATION
+        # get the index for the key
+        # search the linked list at the index for the key
+        # if found, overwrite the value stored there
+        # else insert the key and value at the head of the list at that index
+
         # Your code here
         index = self.hash_index(key)
         self.table[index] = HashTableEntry(key, value)
@@ -110,14 +119,24 @@ class HashTable:
 
         Implement this.
         """
+        # LL IMPLEMENTATION
+        # get the index for the key
+        # search the linked list for the key at that index
+        # if found, delete it, return it
+        # else return None
+
         # Your code here
         index = self.hash_index(key)
 
-        for item in self.table:
-            if item.key == key:
-                self.table.remove(index)
+        if self.table[index] == None:
+            return None
         else:
-            print("Warning. Key is not found.")
+            # value = self.table[index].value
+            self.table[index].value = None
+
+            # return value
+
+
             
     def get(self, key):
         """
@@ -127,18 +146,20 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
-        print("GET")
-        print(key)
+        # LL IMPLEMENTATION
+        # get the index for the key
+        # search the linked list at that index for the key
+        # if found return the value
+        # else return None
 
-        for item in self.table:
-            print(item.key)
-            print(item.value)
-            if item.key == key:
-                return item.value
-            else:
-                return None
-        print("---")
+        # Your code here
+
+        index = self.hash_index(key)
+
+        if self.table[index] == None:
+            return None
+        else:
+            return self.table[index].value
 
 
     def resize(self, new_capacity):
@@ -198,3 +219,9 @@ if __name__ == "__main__":
         
 
     print("")
+
+    # put 3 things in
+    # get them
+    # delete them
+    # try to break it
+    # find the errors
